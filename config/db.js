@@ -22,7 +22,7 @@ const envKey = key => {
         },
         postgresql: {
             connection: process.env.DB_CONNECTION || 'postgresql',
-            host: process.env.DB_HOST || '180.250.242.163',
+            host: process.env.DB_HOST || '192.168.20.10',
             port: process.env.DB_PORT || 5432,
             username: process.env.DB_USERNAME || 'postgres',
             password: process.env.DB_PASSWORD || 'postgres',
