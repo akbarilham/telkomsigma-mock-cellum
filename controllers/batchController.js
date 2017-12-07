@@ -74,7 +74,6 @@ var batch = (function(){
 												response.json({'ResultCode' : 'OK'});
 
 												logger.info('ResultCode : OK');
-												// pembaharuan git
 
 												// if ( resultReferencesKey == 'OK' ) {
 
