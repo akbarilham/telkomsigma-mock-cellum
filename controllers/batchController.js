@@ -8,13 +8,13 @@ var yona = require("../library/Yona.js");
 var naomi = require("../library/Naomi.js");
 var Model = require("../model/totalExternalID");
 
-log4js.configure({
-  appenders: [
-    { type: 'console' },
-    { type: 'file', filename: '../logs/process.log', category: 'All' }
-  ]
-});
-var logger = log4js.getLogger('All');
+// log4js.configure({
+//   appenders: [
+//     { type: 'console' },
+//     { type: 'file', filename: '../logs/process.log', category: 'All' }
+//   ]
+// });
+// var logger = log4js.getLogger('All');
 
 var batch = (function(){
 
@@ -73,7 +73,7 @@ var batch = (function(){
 
 												response.json({'ResultCode' : 'OK'});
 
-												logger.info('ResultCode : OK');
+												// logger.info('ResultCode : OK');
 
 												// if ( resultReferencesKey == 'OK' ) {
 
