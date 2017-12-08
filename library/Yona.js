@@ -70,22 +70,22 @@ module.exports = {
 				return citra;
 		}
 
-		if (nadse === 'charge.references'){
-			if (yona.length === '')
-				return "OK";
-			else if (yona.length > 0)
-				return "optional";
-		}
+		// if (nadse === 'charge.references'){
+		// 	if (yona.length === '')
+		// 		return "OK";
+		// 	else if (yona.length > 0)
+		// 		return "optional";
+		// }
 
-		if (nadse === 'charge.references.referencekey'){
-			if (yona.length > 20 && typeof yona === 'string')
-				return citra;
-		}
+		// if (nadse === 'charge.references.referencekey'){
+		// 	if (yona.length > 20 && typeof yona === 'string')
+		// 		return citra;
+		// }
 
-		if (nadse === 'charge.references.referenceval'){
-			if (yona.length > 100 && typeof yona === 'string')
-				return citra;
-		}
+		// if (nadse === 'charge.references.referenceval'){
+		// 	if (yona.length > 100 && typeof yona === 'string')
+		// 		return citra;
+		// }
 
 		// validation public
 		switch (yona){
