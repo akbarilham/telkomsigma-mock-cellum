@@ -58,7 +58,7 @@ async.forEach(ExternalId, function (item, callback){
         // console.log(result); return false;
 
         if(chargerequests.length == ExternalId.length){
-            response.json({"ChargeRequests" : chargerequests});
+            response.json({"ChargeProcessStatuses" : chargerequests});
             console.log("Iterating sudah done");
             // chargerequests.pop();
             chargerequests = [];

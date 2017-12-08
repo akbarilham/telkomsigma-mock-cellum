@@ -52,6 +52,8 @@ var batch = (function(){
 			checkErr	= yona.valid(CommissionFee, 'charge.commissionfee', 'FAILED_ERROR_TECHNICAL CommissionFee - tipe data bukan decimal');
 			checkErr	= yona.valid(Description, 'charge.description', 'FAILED_ERROR_TECHNICAL Description - jumlah string lebih dari 255');
 			// checkErr	= yona.valid(References, 'charge.references', 'FAILED_ERROR_TECHNICAL');
+			// checkErr	= yona.valid(ReferenceKey, 'charge.references.referencekey', 'FAILED_ERROR_TECHNICAL Key - jumlah char lebih dari 20');
+			// checkErr = yona.valid(ReferenceVal, 'charge.references.referenceval', 'FAILED_ERROR_TECHNICAL - jumlah string lebih dari 100');
 
 	  		var checkAccountID = res.rows[0].count;
 
@@ -108,85 +110,6 @@ var batch = (function(){
 		// }
 
 		// validation start
-
-		// var resultReferencesKey		= yona.valid(ReferenceKey, 'charge.references.referencekey', 'FAILED_ERROR_TECHNICAL Key - jumlah char lebih dari 20');
-		// var resultReferencesVal 	= yona.valid(ReferenceVal, 'charge.references.referenceval', 'FAILED_ERROR_TECHNICAL - jumlah string lebih dari 100');
-
-		// if ( resultChargeRequests === "OK") {
-
-		// 	if ( resultExternalId === "OK") {
-
-		// 		if ( resultMerchantId === "OK") {
-
-		// 			if ( resultTerminalId === "OK") {
-
-		// 				if ( resultAccountId === "OK") {
-
-		// 					if ( resultAppTypeId === "OK") {
-
-		// 						if ( resultAmount === "OK") {
-
-		// 							if ( resultCommissionFee === "OK" ) {
-
-		// 								if ( resultDescription === "OK" ) {
-
-		// 									if ( resultReferences === "optional" ) {
-
-		// 										// response.json({'ResultCode' : 'OK'});
-
-		// 										// logger.info('ResultCode : OK');
-
-		// 										// if ( resultReferencesKey == 'OK' ) {
-
-		// 										// 	if ( resultReferencesVal ) {
-
-		// 										// 		response.json({'ResultCode' : 'OK'});
-
-		// 										// 	} else {
-		// 										// 		response.json({'ResultCode' : resultReferencesVal});
-		// 										// 	}
-
-		// 										// } else {
-		// 										// 	response.json({'ResultCode' : resultReferencesKey});
-		// 										// }
-
-		// 									} else if ( resultReferences === "OK" ) {
-		// 										response.send({'ResultCode' : 'OK'});
-		// 									} else {
-		// 										response.send({'ResultCode' : resultReferences});
-		// 									}
-
-		// 								} else {
-		// 									response.send({'ResultCode' : resultDescription});
-		// 								}
-
-		// 							} else {
-		// 								response.send({'ResultCode' : resultCommissionFee});
-		// 							}
-
-		// 						} else {
-		// 							response.send({'ResultCode' : resultAmount});
-		// 						}												
-
-		// 					} else {
-		// 						response.send({'ResultCode' : resultAppTypeId});
-		// 					}
-
-		// 				} else {
-		// 					response.send({'ResultCode' : resultAccountId});
-		// 				}
-
-		// 			} else {
-		// 				response.send({'ResultCode' : resultTerminalId});
-		// 			}
-
-		// 		} else {
-		// 			response.send({'ResultCode' : resultMerchantId});
-		// 		}
-
-		// 	} else {
-		// 		response.send({'ResultCode' : resultExternalId});
-		// 	}
 
 		// } else {
 		// 	response.send({'ResultCode' : resultChargeRequests});
