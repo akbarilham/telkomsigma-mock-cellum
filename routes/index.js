@@ -16,7 +16,7 @@ router.post('/query', function(req, res) {
   batchController.chargeProcessQuery(req,res);
 });
 
-router.post('/balance', function(req, res) {
+router.get('/balance', function(req, res) {
   balanceController.balanceInfoList(req,res);
 });
 
