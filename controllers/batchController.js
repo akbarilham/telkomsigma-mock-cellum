@@ -1,21 +1,13 @@
 var validate = require("validate.js");
 var validator = require("validator");
 var moment = require("moment");
-var log4js = require('log4js');
 const async = require('async');
 
 var db = require("../config/db");
 var yona = require("../library/Yona.js");
 var naomi = require("../library/Naomi.js");
 var Model = require("../model/totalExternalID");
-
-// log4js.configure({
-//   appenders: [
-//     { type: 'console' },
-//     { type: 'file', filename: '../logs/process.log', category: 'All' }
-//   ]
-// });
-// var logger = log4js.getLogger('All');
+var panggil = require("../library/Winston.js");
 
 var batch = (function(){
 
@@ -25,6 +17,7 @@ var batch = (function(){
 		var ChargeRequests  = request.body.ChargeRequests;
 		var arrAccountId = [];
 		var checkErr = '';
+		panggil.info('BS start');
 
 		async.forEach(ChargeRequests, function (item, callback){ 
 
@@ -32,6 +25,13 @@ var batch = (function(){
 		let select = "SELECT count(account_id) FROM cellum.t_account WHERE account_id = '" + AccountId + "'";
 	  	db.manual.query(select, (err, res) => {
 	  		
+			// for (var i = 0; i < References.length; i++) {
+			// 		console.log("even " + References[i].Key);
+			// 		console.log("odd " + References[i].Value);	
+			// }
+
+			// validation start
+
 			var ExternalId 		= item.ExternalId;
 			var MerchantId		= item.Merchant.MerchantId;
 			var TerminalId		= item.Merchant.TerminalId;
@@ -58,13 +58,16 @@ var batch = (function(){
 	  		var checkAccountID = res.rows[0].count;
 
 	  		if (checkErr !== 'OK'){
+
 	  			console.log(checkErr);
-				return callback({ error : checkErr}); 
+				return callback({ error : checkErr});
+
 	  		} 
 	  		if (checkAccountID == 0) {
-	  			//response.json({'ResultCode' : 'FAILED_ERROR_TECHNICAL'});
+
 	  			checkErr = 'FAILED_ERROR_TECHNICAL';
 	  			return callback({ error : checkErr}); 
+
 	  		}
 
 				var CutDate = moment.utc().format();
@@ -94,27 +97,19 @@ var batch = (function(){
 		}, function(err) {
 			console.log("cek err : " + checkErr); 
 			if (checkErr == '') {
+
 				response.json({'ResultCode' : 'OK'});
 			    console.log("error " + err);
+
 			} else {
+
 				response.json({'ResultCode' : checkErr});
 			    console.log("error " + err);
+
 			}
 			checkErr = '';
 
 		}); 
-
-		// for (var i = 0; i < References.length; i++) {
-		// 		console.log("even " + References[i].Key);
-		// 		console.log("odd " + References[i].Value);	
-		// }
-
-		// validation start
-
-		// } else {
-		// 	response.send({'ResultCode' : resultChargeRequests});
-		// }
-
 
 	};		
 
@@ -123,7 +118,6 @@ var batch = (function(){
 		var ExternalId = request.body.ExternalIds;
 	    Model(ExternalId,response);
 
-    // where account id and external id
 	}
 
 	return {
