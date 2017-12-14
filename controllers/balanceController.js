@@ -22,6 +22,8 @@ var balance = (function(){
 
 	  			var AccountId = res.rows[i].account_id;
 	  			var BalanceAmount = res.rows[i].balance;
+	  			console.log(AccountId);
+	  			console.log(BalanceAmount);
 
 				data = {
 			      "AccountId": AccountId,
