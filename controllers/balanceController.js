@@ -34,7 +34,7 @@ var balance = (function(){
 			});
 
 			response.json({"BalanceInfoItems": BalanceInfoItems});
-			panggil.info("<-- Balance info data was pushed");
+			panggil.info("<-- Balance info data pushed");
 			panggil.info("<-- End function of Balance Info");
 		});
 
