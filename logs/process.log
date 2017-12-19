@@ -1,7 +1,0 @@
-{"level":"info","message":"<-- Start function of Balance Info","timestamp":"2017-12-19T04:24:52.942Z"}
-{"level":"info","message":"<-- Balance info data pushed","timestamp":"2017-12-19T04:24:52.962Z"}
-{"level":"info","message":"<-- End function of Balance Info","timestamp":"2017-12-19T04:24:52.964Z"}
-{"level":"info","message":"<-- Start function of Balance Info","timestamp":"2017-12-19T04:25:18.231Z"}
-{"level":"error","message":"<-- Balance Info error : null","timestamp":"2017-12-19T04:25:18.235Z"}
-{"level":"info","message":"<-- Balance info data pushed","timestamp":"2017-12-19T04:25:18.246Z"}
-{"level":"info","message":"<-- End function of Balance Info","timestamp":"2017-12-19T04:25:18.250Z"}
