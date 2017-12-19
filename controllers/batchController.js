@@ -17,21 +17,16 @@ var batch = (function(){
 		var ChargeRequests  = request.body.ChargeRequests;
 		var arrAccountId = [];
 		var checkErr = '';
-		panggil.info('BS start');
+		panggil.info("<-- Start function of Batch Start");
 
 		async.forEach(ChargeRequests, function (item, callback){ 
 
 		var AccountId = item.User.AccountId;
 		let select = "SELECT count(account_id) FROM cellum.t_account WHERE account_id = '" + AccountId + "'";
 	  	db.manual.query(select, (err, res) => {
-	  		
-			// for (var i = 0; i < References.length; i++) {
-			// 		console.log("even " + References[i].Key);
-			// 		console.log("odd " + References[i].Value);	
-			// }
 
 			// validation start
-
+			panggil.info("<-- Batch Start validation is started");
 			var ExternalId 		= item.ExternalId;
 			var MerchantId		= item.Merchant.MerchantId;
 			var TerminalId		= item.Merchant.TerminalId;
@@ -59,12 +54,13 @@ var batch = (function(){
 
 	  		if (checkErr !== 'OK'){
 
-	  			console.log(checkErr);
+	  			panggil.error("<-- Batch Start error : " + checkErr);
 				return callback({ error : checkErr});
 
 	  		} 
 	  		if (checkAccountID == 0) {
 
+				panggil.error("<-- Batch Start error : " + checkErr);
 	  			checkErr = 'FAILED_ERROR_TECHNICAL';
 	  			return callback({ error : checkErr}); 
 
@@ -77,7 +73,7 @@ var batch = (function(){
 
 			  	db.manual.query(update, (err, res) => {
 
-			  		console.log("Update Success");
+			  		panggil.info("<-- Batch Start update was success");
 
 					let insert_trx = {
 					  text: 'INSERT INTO cellum.t_account_trx(account_id, trx_amount, cmn_id, external_id, trx_date, status) VALUES($1, $2, $3, $4, $5, $6)',
@@ -85,7 +81,7 @@ var batch = (function(){
 					}
 
 				  	db.manual.query(insert_trx, (err, res) => {
-				  		console.log("Insert trx Success");
+				  		panggil.info("<-- Batch Start insert was success");
 					});
 
 				});
@@ -95,16 +91,16 @@ var batch = (function(){
 		callback();
 
 		}, function(err) {
-			console.log("cek err : " + checkErr); 
+			panggil.info("<-- Batch Start checking error ");
 			if (checkErr == '') {
 
 				response.json({'ResultCode' : 'OK'});
-			    console.log("error " + err);
+			    panggil.info("<-- End function of Batch Start");
 
 			} else {
 
 				response.json({'ResultCode' : checkErr});
-			    console.log("error " + err);
+			    panggil.error("<-- BS error : " + err);
 
 			}
 			checkErr = '';

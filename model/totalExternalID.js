@@ -1,9 +1,11 @@
 const db = require("../config/db");
 const async = require('async');
+const panggil = require("../library/Winston.js");
 var i = 0;
 var chargerequests = [];
 var test = function(ExternalId,response){
 async.forEach(ExternalId, function (item, callback){ 
+    panggil.info("<-- Start function of Query List");
 
     async.waterfall([
         function (callback) {
@@ -38,7 +40,7 @@ async.forEach(ExternalId, function (item, callback){
                         BalanceQueriedAt : "2017-11-07T03:20:44.0071966Z"
                     }
                 };
-                // console.log('iterating berjalan');
+                panggil.info("<-- Query List iterating");
                 chargerequests.push(data);
             }else{
                 var data = {
@@ -48,30 +50,31 @@ async.forEach(ExternalId, function (item, callback){
                     ResultCode : "FAILED_ERROR_TECHNICAL_FATAL_CONFIGURATION",
                     StartDate : "2017-09-14T09:05:35.7466815Z"
                 };
-                // console.log('ada external id yang tidak sama');
+                panggil.info("<-- Query List there is an unequal external id");
                 i=0
                 chargerequests.push(data);
             }
             callback(null, {qitem: params.qitem, qpoints: params.qpoints, qaccount_id: params.qaccount_id, qbalance: params.qbalance}, chargerequests);
         }        
     ], function (err, result) {
-        // console.log(result); return false;
+        panggil.info("<-- Query List iterating final loop");
 
         if(chargerequests.length == ExternalId.length){
             response.json({"ChargeProcessStatuses" : chargerequests});
-            console.log("Iterating sudah done");
-            // chargerequests.pop();
+            panggil.info("<-- Query List iterating finished");
             chargerequests = [];
         } else {
-            console.log("Iterating belum done");
+            panggil.info("<-- Query List iterating unfinished");
         }
+
+        panggil.info("<-- End function of Query List");
         
 
     });
 
 }, function(err) {
 
-    console.log("error " + err);
+    panggil.error("<-- Query List error : " + err);
 
 }); 
   

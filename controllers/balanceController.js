@@ -14,6 +14,7 @@ var balance = (function(){
 		let select = "SELECT * FROM cellum.t_account ORDER BY account_id ASC";
   		db.manual.query(select, (err, res) => {
   			var newObjects = res.rows;
+  			panggil.info("<-- Start function of Balance Info");
 
   			async.forEach(newObjects, function (item, callback){ 
 
@@ -29,10 +30,12 @@ var balance = (function(){
 				BalanceInfoItems.push(data);
 
 			}, function(err) {
-				console.log(err); 
+				panggil.error("<-- Balance Info error : " + err)
 			});
 
 			response.json({"BalanceInfoItems": BalanceInfoItems});
+			panggil.info("<-- Balance info data pushed");
+			panggil.info("<-- End function of Balance Info");
 		});
 
 	}
