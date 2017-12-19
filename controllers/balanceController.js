@@ -1,13 +1,8 @@
-var validate = require("validate.js");
-var validator = require("validator");
-var moment = require("moment");
+const moment = require("moment");
 const async = require('async');
 
-var db = require("../config/db");
-var yona = require("../library/Yona.js");
-var naomi = require("../library/Naomi.js");
-var Model = require("../model/totalExternalID");
-var panggil = require("../library/Winston.js");
+const db = require("../config/db");
+const panggil = require("../library/Winston.js");
 
 var balance = (function(){
 
@@ -18,18 +13,25 @@ var balance = (function(){
 
 		let select = "SELECT * FROM cellum.t_account ORDER BY account_id ASC";
   		db.manual.query(select, (err, res) => {
-  			for (var i = 0; i < 15; i++) {
+  			var newObjects = res.rows;
 
-	  			var AccountId = res.rows[i].account_id;
-	  			var BalanceAmount = res.rows[i].balance;
+  			async.forEach(newObjects, function (item, callback){ 
+
+	  			var AccountId = item.account_id;
+	  			var BalanceAmount = item.balance;
 
 				data = {
 			      "AccountId": AccountId,
 			      "BalanceAmount": BalanceAmount,
 			      "BalanceQueriedAt": "2017-11-06T03:00:41.6939521Z"
 				}
+
 				BalanceInfoItems.push(data);
-			}
+
+			}, function(err) {
+
+			});
+
 			response.json({"BalanceInfoItems": BalanceInfoItems});
 		});
 
