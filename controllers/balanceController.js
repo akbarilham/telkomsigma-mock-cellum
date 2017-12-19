@@ -21,15 +21,15 @@ var balance = (function(){
 	  			var BalanceAmount = item.balance;
 
 				data = {
-			      "AccountId": AccountId,
-			      "BalanceAmount": BalanceAmount,
-			      "BalanceQueriedAt": "2017-11-06T03:00:41.6939521Z"
+					"AccountId": AccountId,
+					"BalanceAmount": BalanceAmount,
+					"BalanceQueriedAt": "2017-11-06T03:00:41.6939521Z"
 				}
 
 				BalanceInfoItems.push(data);
 
 			}, function(err) {
-
+				console.log(err); 
 			});
 
 			response.json({"BalanceInfoItems": BalanceInfoItems});
